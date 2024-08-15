@@ -1,7 +1,7 @@
 package com.recommendation_service.controller;
 
 import com.recommendation_service.model.RecommendationList;
-import com.recommendation_service.model.RequestParams;
+import com.recommendation_service.model.RecommendationRequestParams;
 import com.recommendation_service.model.ResponseMessage;
 import com.recommendation_service.service.RecommendService;
 import jakarta.validation.Valid;
@@ -10,11 +10,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/recommendation")
-public class Controller {
+public class RecommendationController {
 
     @Autowired
     private RecommendService recommendService;
@@ -33,7 +31,7 @@ public class Controller {
     @GetMapping(value = "/{type}")
     public ResponseEntity<ResponseMessage> getRecommendation(
             @PathVariable String type,
-            @Valid @RequestBody RequestParams request) {
+            @Valid @RequestBody RecommendationRequestParams request) {
         RecommendationList recommendationList;
         if ("film".equals(type)) {
             recommendationList = recommendService.getRecommendationFilms(

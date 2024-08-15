@@ -10,5 +10,5 @@ import lombok.Data;
 public class ResponseMessage {
     private String message;
     private int status;
-    private RecommendationList data;
+    private DataList data;
 }

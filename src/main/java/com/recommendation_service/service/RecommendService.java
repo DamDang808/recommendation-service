@@ -14,7 +14,6 @@ public class RecommendService {
     @Autowired
     private RestTemplate restTemplate;
 
-    // Todo: Chỉ trả về list chứa ID của các film/video được recommend
     @Cacheable(value = "film", keyGenerator = "customKeyGenerator")
     public RecommendationList getRecommendationFilms(int userId, int profileId, int limit, int offset) {
         RecommendationList list = new RecommendationList();

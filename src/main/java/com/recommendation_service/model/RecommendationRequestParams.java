@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Builder
 @Data
-public class RequestParams {
+public class RecommendationRequestParams {
     @NotNull
     @Min(value = 1, message = "User Id must be greater than 0")
     private Integer userId;
