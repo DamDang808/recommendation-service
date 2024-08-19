@@ -1,6 +1,5 @@
 package com.recommendation_service.service;
 
-import com.recommendation_service.model.RelatedList;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,23 +15,18 @@ public class RelatedService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Cacheable(value = "relatedFilm", key = "#filmId + ':' + #limit + ':' + #offset")
-    public RelatedList getRelatedFilm(long filmId, long limit, long offset) {
-        RelatedList list = new RelatedList();
+    @Cacheable(value = "film", key = "'related:' + #filmId + ':' + #limit + ':' + #offset")
+    public List<Integer> getRelatedFilm(long filmId, long limit, long offset) {
         String url = "http://simulate-data/related/film/" + filmId + "?limit=" + limit + "&offset=" + offset;
-        List<Object> content = restTemplate.getForObject(url, List.class);
-        list.setList(content);
+        List<Integer> content = restTemplate.getForObject(url, List.class);
 
-        return list;
+        return content;
     }
 
-    @Cacheable(value = "relatedVideo", key = "#videoId + ':' + #limit + ':' + #offset")
-    public RelatedList getRelatedVideo(long videoId, long limit, long offset) {
-        RelatedList list = new RelatedList();
+    @Cacheable(value = "video", key = "'related:' + #videoId + ':' + #limit + ':' + #offset")
+    public List<Integer> getRelatedVideo(long videoId, long limit, long offset) {
         String url = "http://simulate-data/related/video/" + videoId + "?limit=" + limit + "&offset=" + offset;
-        List<Object> content = restTemplate.getForObject(url, List.class);
-        list.setList(content);
-
-        return list;
+        List<Integer> content = restTemplate.getForObject(url, List.class);
+        return content;
     }
 }

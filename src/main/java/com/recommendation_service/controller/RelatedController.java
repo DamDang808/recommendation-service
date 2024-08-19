@@ -1,6 +1,5 @@
 package com.recommendation_service.controller;
 
-import com.recommendation_service.model.RelatedList;
 import com.recommendation_service.model.RelatedRequestParams;
 import com.recommendation_service.model.ResponseMessage;
 import com.recommendation_service.service.RelatedService;
@@ -10,6 +9,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/related")
@@ -21,12 +22,12 @@ public class RelatedController {
     @Autowired
     private Environment env;
 
-    @GetMapping(value = "/{type}")
+    @PostMapping(value = "/{type}")
     public ResponseEntity<ResponseMessage> getRelated(
             @PathVariable("type") String type,
             @Valid @RequestBody RelatedRequestParams requestParams) {
 
-        RelatedList relatedList;
+        List<Integer> relatedList;
         if ("film".equals(type)) {
             relatedList = relatedService.getRelatedFilm(requestParams.getId(),
                     requestParams.getLimit(),

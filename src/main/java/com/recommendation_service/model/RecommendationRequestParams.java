@@ -1,12 +1,9 @@
 package com.recommendation_service.model;
 
 import jakarta.validation.constraints.Min;
-import lombok.Builder;
-import lombok.Data;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
-
-@Builder
 @Data
 public class RecommendationRequestParams {
     @NotNull
@@ -15,6 +12,14 @@ public class RecommendationRequestParams {
     @NotNull
     @Min(value = 1, message = "Profile Id must be greater than 0")
     private Integer profileId;
+
+
+    @NotNull
+    private int zoneId;
+
+    @NotNull
+    private int contentFilter;
+
 
     @NotNull
     @Min(value = 1, message = "Limit must be greater than 0")
