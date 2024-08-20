@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,12 +56,14 @@ public class RecommendationController {
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("Success")
-                .status(200)
+                .status(HttpStatus.OK.value())
                 .data(recommendationList)
                 .build();
 
         return ResponseEntity.ok(responseMessage);
     }
+
+    
 }
 
 

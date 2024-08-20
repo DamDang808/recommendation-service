@@ -9,17 +9,16 @@ public class RecommendationRequestParams {
     @NotNull
     @Min(value = 1, message = "User Id must be greater than 0")
     private Integer userId;
+
     @NotNull
     @Min(value = 1, message = "Profile Id must be greater than 0")
     private Integer profileId;
-
 
     @NotNull
     private int zoneId;
 
     @NotNull
     private int contentFilter;
-
 
     @NotNull
     @Min(value = 1, message = "Limit must be greater than 0")

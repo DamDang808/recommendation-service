@@ -4,14 +4,15 @@ import com.recommendation_service.model.RelatedRequestParams;
 import com.recommendation_service.model.ResponseMessage;
 import com.recommendation_service.service.RelatedService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/related")
 public class RelatedController {
@@ -19,14 +20,11 @@ public class RelatedController {
     @Autowired
     private RelatedService relatedService;
 
-    @Autowired
-    private Environment env;
-
     @PostMapping(value = "/{type}")
     public ResponseEntity<ResponseMessage> getRelated(
             @PathVariable("type") String type,
             @Valid @RequestBody RelatedRequestParams requestParams) {
-
+        log.info("1");
         List<Integer> relatedList;
         if ("film".equals(type)) {
             relatedList = relatedService.getRelatedFilm(requestParams.getId(),
